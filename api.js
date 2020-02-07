@@ -1,20 +1,32 @@
-const tools = require('./app')
+const tools = require('./tools')
 const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/fetchSupplier', async (req, res) => {
-    if (!req.query.supplier) { res.send("You must provide a supplier") }
-    const response = await tools.fetchSupplier(req.query.supplier, req.query.pickup, req.query.dropoff, req.query.max)
-    console.log(response)
-    res.send(JSON.stringify(response));
+app.get('/fetchSupplier', (req, res) => {
+    if (!req.query.supplier) {
+        res.type('json').status(400).send({ message: "You must provide a supplier" })
+    } else if (!req.query.min) {
+        res.type('json').status(400).send({ message: "You must provide a min nb of passangers" })
+    } else {
+        fetchSupplier(req.query.supplier, req.query.pickup, req.query.dropoff, req.query.min).then(response => {
+            res.type('json').status(response.code).send(response);
+        }).catch(err => {
+            res.type('json').status(500).send({ error: err });
+        })
+    }
 })
 
-app.get('/fetchAllSuppliers', async (req, res) => {
-    if (!req.query.max) { res.send("You must provide a maximum passangers value") }
-    const response = await tools.fetchAllSuppliers(req.query.pickup, req.query.dropoff, req.query.max)
-    console.log(response)
-    res.send(JSON.stringify(response));
+app.get('/fetchAllSuppliers', (req, res) => {
+    if (!req.query.min) {
+        res.type('json').status(400).send({ message: "You must provide a maximum passangers value" })
+    } else {
+        fetchAllSuppliers(req.query.pickup, req.query.dropoff, req.query.min).then(response => {
+            res.type('json').status(200).send(response);
+        }).catch(err => {
+            res.type('json').status(500).send({ error: err });
+        })
+    }
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+module.exports = server = app.listen(port, () => console.log(`Example app listening on port ${port}!`))
