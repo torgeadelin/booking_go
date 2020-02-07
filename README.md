@@ -25,6 +25,8 @@ The API seems to have a random behaviour and while testing the fetch functions o
 
 2. The applcation will return the result and erros if there are any.
 
+Example: `node app.js 51.470020,-0.454295 51.5112079,-0.1215334 3`
+
 ### Part 2
 
 - To start a local server for the REST api run `node api.js`
@@ -34,6 +36,11 @@ The API seems to have a random behaviour and while testing the fetch functions o
   | -------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
   | `/fetchSupplier`     | `{supplier: "string", pickup: "lat,lon", dropoff: "lat,lon", min: int}` | `{ "status": "unsuccessful/unsuccesfull" "code": 400, "value": "MINIBUS - dave - 145311" }` |
   | `/fetchAllSuppliers` | `{pickup: "lat,lon", dropoff: "lat,lon", min: int}`                     | `{ "list": [...], "errors": [...]}`                                                         |
+
+  Examples:
+
+  - `http://localhost:3000/fetchSupplier?supplier=dave&pickup=51.470020,-0.454295&dropoff=51.5112079,-0.1215334&min=3`
+  - `http://localhost:3000/fetchAllSuppliers?supplier=dave&pickup=51.470020,-0.454295&dropoff=51.5112079,-0.1215334&min=3`
 
 #### Implementation considerations
 
