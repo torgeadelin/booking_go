@@ -1,0 +1,35 @@
+{
+  "name": "booking_go",
+  "version": "1.0.0",
+  "description": "Booking Go Technical Test",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torgeadelin/booking_go.git"
+  },
+  "author": "Catalin Torge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/torgeadelin/booking_go/issues"
+  },
+  "homepage": "https://github.com/torgeadelin/booking_go#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
